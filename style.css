@@ -1,5 +1,9 @@
 .div__product{
-
+    display: inline-block;
+    border-style: solid;
+    border-width: medium;
+    margin:5px;
+    padding: 5px;
 }
 
 

@@ -10,7 +10,7 @@ include '../Controller/ProductController.php';
 <form action="#" method="post" enctype="multipart/form-data">
 
     <h3>Add Product:</h3>
-    <input type="file" name="image" />
+    <input type="file" name="image" multiple accept="image/*"/>
     <p><input type="text" name="name" placeholder="Name" /></p>
     <p><input type="number" name="price" placeholder="Price" /></p>
     <p><input type="text" name="header" placeholder="Header" /></p>
@@ -34,17 +34,35 @@ if(isset($_POST['add'])) {
     $header = trim(htmlspecialchars($_POST['header']));
     $description = trim(htmlspecialchars($_POST['description']));
     //$imagepath = trim(htmlspecialchars($_POST['image']));
-
-    if($name =="" || $price == "" || $header == "" || $description == ""){
-        echo "Fill in all the fields";
-        exit();
-    }
-        if(move_uploaded_file($_FILES['image']['tmp_name'], '../Images/'.$_FILES['image']['name'])){
-            echo $_FILES['image']['size'];
-            $imagepath = $_FILES['image']['name'];
-            AddProduct($name, $price, $header, $description, $imagepath);
+    $target_dir = '../Images/';
+    $target_file = $target_dir . basename($_FILES["image"]["name"]);
+    $imagepath = $_FILES['image']['name'];
+    //$check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    if($name !="" && $price != "" && $header != "" && $description != "" && $imagepath != ""){
+//        echo "Fill in all the fields";
+//        exit();
+        if (!file_exists($target_file)) {
+            if(!move_uploaded_file($_FILES['image']['tmp_name'], '../Images/'.$_FILES['image']['name'])){
+                //echo $_FILES['image']['size'];
+                echo "Image not Added";
+            }
+            else{
+                AddProduct($name, $price, $header, $description, $imagepath);
+            }
         }
+        else {
+            echo "Sorry, file already exists.";
+        }
+    }
+//    if($check !== false) {
+//        echo "File is an image - " . $check["mime"] . ".";
+//        $uploadOk = 1;
+//    }
 
+    else{
+        echo "Fill all fields";
+    }
 
 
 }

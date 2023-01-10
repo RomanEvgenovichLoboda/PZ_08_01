@@ -1,3 +1,9 @@
+<html>
+<head>
+    <title>AddProduct</title>
+    <link href="../style.css" rel="stylesheet"/>
+</head>
+<body>
 <?php
 include './Model/ProductModel.php';
 
@@ -14,7 +20,12 @@ function SellectAll(){
         //$results = $conn->query($sql_code);
         foreach ($results as $res){
             $prod = new ProductModel($res["id"],$res["name"],$res["price"],$res["header"],$res["description"],$res["imagepath"]);
+            echo "<div class='div__product'>";
             echo $prod->ShowProduct();
+            echo "<button>Dell</button>";
+            echo "<button>Edit</button>";
+            echo  "</div>";
+
         }
         $results->free();
         $conn->close();
@@ -39,6 +50,8 @@ function AddProduct($name,$price,$header,$description,$imagepath){
 //            echo 'Error code:'.$err.'<br>';
         echo '<p>Data not added</p>';
     }
-    $results->free();
+    //$results->free();
     $conn->close();
 }
+?>
+</body></html>

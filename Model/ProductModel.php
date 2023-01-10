@@ -1,3 +1,4 @@
+
 <?php
 
 class ProductModel
@@ -66,15 +67,23 @@ class ProductModel
         return $this->imagepath;
     }
     public function ShowProduct(){
-        return "<div>
+        return "
             <p>Id - ".$this->id."</p>
-            <p>Id - ".$this->name."</p>
-            <p>Id - ".$this->price."</p>
-            <p>Id - ".$this->header."</p>
-            <p>Id - ".$this->descriptions."</p>
-            <p>Id - ".$this->imagepath."</p>
-            
-            
-        </div>";
+            <p>Name - ".$this->name."</p>
+            <p>Price - ".$this->price."</p>
+            <p>Header - ".$this->header."</p>
+            <p>Descript - ".$this->descriptions."</p>
+            <p>ImPath - ".$this->imagepath."</p>";
+    }
+
+    public function __destruct()
+    {
+        // TODO: Implement __destruct() method.
+        unset($this->id);
+        unset($this->name);
+        unset($this->price);
+        unset($this->header);
+        unset($this->descriptions);
+        unset($this->imagepath);
     }
 }
