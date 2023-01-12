@@ -1,4 +1,10 @@
-
+<html>
+<head>
+    <title>AddProduct</title>
+<!--    <link href="../style.css" rel="stylesheet"/>-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
 <?php
 
 class ProductModel
@@ -67,13 +73,26 @@ class ProductModel
         return $this->imagepath;
     }
     public function ShowProduct(){
-        return "
+//       return "<div class='d-inline-block' style='width: 200px'>
+           return" <img class='card-img-top' src='../Images/".$this->imagepath."' style='height: 155px '></img>
             <p>Id - ".$this->id."</p>
             <p>Name - ".$this->name."</p>
-            <p>Price - ".$this->price."</p>
-            <p>Header - ".$this->header."</p>
-            <p>Descript - ".$this->descriptions."</p>
-            <p>ImPath - ".$this->imagepath."</p>";
+            <p>Prc(grn) - ".$this->price."</p>
+            <p>Hdr - ".$this->header."</p>
+            <p>Dscrpt - ".$this->descriptions."</p>
+            <p>Path - ".$this->imagepath."</p>";
+//            </div>";
+    }
+
+    public function Edit(){
+//       return "<div class='d-inline-block' style='width: 200px'>
+        return" <img class='card-img-top' src='../Images/".$this->imagepath."' style='height: 155px '></img>
+            <input class='w-100 form-control' name='okname' value='".$this->name."'>Name</input>
+            <input type='number' class='w-100 form-control' name='okprc' value='".$this->price."'>Prc(hrn)</input>
+            <input class='w-100 form-control' name='okhdr' value='".$this->header."'>Hdr</input>
+            <input class='w-100 form-control' name='okdscr' value='".$this->descriptions."'>Dscrpt</input><p></p>";
+
+//            </div>";
     }
 
     public function __destruct()
@@ -87,3 +106,5 @@ class ProductModel
         unset($this->imagepath);
     }
 }
+?>
+</body></html>

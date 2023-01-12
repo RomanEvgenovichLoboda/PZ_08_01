@@ -4,21 +4,27 @@ include '../Controller/ProductController.php';
 <html>
 <head>
     <title>AddProduct</title>
-    <link href="../style.css" rel="stylesheet"/>
+<!--    <link href="../style.css" rel="stylesheet"/>-->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
+<body  class="bg-dark">
 <form action="#" method="post" enctype="multipart/form-data">
 
-    <h3>Add Product:</h3>
-    <input type="file" name="image" multiple accept="image/*"/>
-    <p><input type="text" name="name" placeholder="Name" /></p>
-    <p><input type="number" name="price" placeholder="Price" /></p>
-    <p><input type="text" name="header" placeholder="Header" /></p>
-    <p><input type="text" name="description" placeholder="Description" /></p>
-    <p></p>
-    <p><button type="submit" name="add"> Add </button></p>
+    <div class="card text-bg-dark p-3" style="max-width: 18rem;">
+        <div class="card-header"><h4>Add Product:</h4></div>
+        <div class="card-body">
+            <p><input type="file" name="image" class="form-control" multiple accept="image/*"/></p>
+            <p><input type="text" name="name" class="form-control" placeholder="Name" /></p>
+            <p><input type="number" name="price" class="form-control" placeholder="Price" /></p>
+            <p><input type="text" name="header" class="form-control" placeholder="Header" /></p>
+            <p><input type="text" name="description" class="form-control" placeholder="Description" /></p>
+            <p></p>
+            <p><button type="submit" name="add" class="btn btn-outline-primary"> Add </button></p>
+        </div>
+
+    </div>
+
 </form>
-<div id="myDiv">
 </body>
 </html>
 <?php
@@ -46,19 +52,13 @@ if(isset($_POST['add'])) {
             if(!move_uploaded_file($_FILES['image']['tmp_name'], '../Images/'.$_FILES['image']['name'])){
                 //echo $_FILES['image']['size'];
                 echo "Image not Added";
+                exit();
             }
-            else{
-                AddProduct($name, $price, $header, $description, $imagepath);
-            }
+
         }
-        else {
-            echo "Sorry, file already exists.";
-        }
+        AddProduct($name, $price, $header, $description, $imagepath);
+        //echo "<script> location.href='../View/ShowAllProducts.php'; </script>";
     }
-//    if($check !== false) {
-//        echo "File is an image - " . $check["mime"] . ".";
-//        $uploadOk = 1;
-//    }
 
     else{
         echo "Fill all fields";
@@ -66,24 +66,6 @@ if(isset($_POST['add'])) {
 
 
 }
-    //if($nt==""||$dt=="") exit();
-    //echo 'Date:'.$dt.'<br>';
-//    $conn = new mysqli("localhost","root","","mydb1");
-//    $sql_code = 'INSERT INTO `noets`( `note`, `date`) VALUES ("'.$nt.'" , "'.$dt.'")';
-//
-//    if($results=$conn->query($sql_code)){
-//        echo '<p>Data added</p>';
-//        //echo "<script> location.href='../View/index3.php'; </script>";
-//    }
-//    else{
-////            $err = mysqli_errno();
-////            echo 'Error code:'.$err.'<br>';
-//        echo '<p>Data not added</p>';
-//    }
-//    //mysql_free_result()
-//    $results->free();
-//    $conn->close();
 
-//}
 
 ?>
