@@ -1,10 +1,4 @@
-<html>
-<head>
-    <title>AddProduct</title>
-<!--    <link href="../style.css" rel="stylesheet"/>-->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
+
 <?php
 
 class ProductModel
@@ -106,5 +100,4 @@ class ProductModel
         unset($this->imagepath);
     }
 }
-?>
-</body></html>
+
