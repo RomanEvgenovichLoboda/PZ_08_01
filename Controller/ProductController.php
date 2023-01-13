@@ -6,7 +6,7 @@
 </head>
 <body>
 <?php
-include './Model/ProductModel.php';
+
 
 function SellectAll(){
     $conn = new mysqli("localhost","root","","mydb1");
